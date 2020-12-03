@@ -24,6 +24,7 @@ float[][] terrain;
 int terrainHeight = 50;
 
 int red, green, blue = 0;
+int fillRed, fillGreen, fillBlue = 0;
 
 void setup() {
   size(800, 800, P3D);
@@ -53,7 +54,8 @@ void draw() {
   background(0);
   //default color is 255, 150, 0
   stroke(red, green, blue);
-  fill(200, 0, 150);
+  //default color is 200, 0, 150
+  fill(fillRed, fillGreen, fillBlue);
 
   translate(width/2, height/2+50);
   rotateX(PI/3);
@@ -67,6 +69,9 @@ void draw() {
     }
     endShape();
   }
+  fill(255);
+  rotateX((PI/3)*-1);
+  circle(0,  0, 100);
 }
 
 /* incoming osc message are forwarded to the oscEvent method. */
@@ -80,4 +85,7 @@ void oscEvent(OscMessage theOscMessage) {
   red = theOscMessage.get(1).intValue();
   green = theOscMessage.get(2).intValue();
   blue = theOscMessage.get(3).intValue();
+  fillRed = theOscMessage.get(4).intValue();
+  fillGreen = theOscMessage.get(5).intValue();
+  fillBlue = theOscMessage.get(6).intValue();
 }
