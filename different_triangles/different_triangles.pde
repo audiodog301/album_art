@@ -19,6 +19,8 @@ void setup() {
   rows = height;
   columns = width / scl;
   
+  camera(-50, -50, -50, width/2.0, height/2.0, 0, 0, 1, 0);
+  
   oscP5 = new OscP5(this, 12000);
   myLocation = new NetAddress("127.0.0.1", 12001);
 }
@@ -45,16 +47,6 @@ void draw() {
     }
   }
   rotateX(-PI/3);
-  for (int i = 0; i < 3; i++) {
-    for (int j = 0; j < columns; j++) {
-      beginShape(TRIANGLE_STRIP);
-      x = -250 + (j * scl);
-      y = -300 + (i * scl);
-      vertex(x, y);
-      vertex(x, y - scl);
-    }
-    endShape(CLOSE);
-  }
 }
 
 /* incoming osc message are forwarded to the oscEvent method. */
