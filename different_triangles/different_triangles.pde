@@ -12,6 +12,8 @@ int secondHeight = 15;
 
 int background = 1;
 
+int x, y = 0;
+
 void setup() {
   size(600, 600, P3D);
   rows = height;
@@ -41,6 +43,17 @@ void draw() {
           translate(0, 0, -secondHeight);
       }
     }
+  }
+  rotateX(-PI/3);
+  for (int i = 0; i < 3; i++) {
+    for (int j = 0; j < columns; j++) {
+      beginShape(TRIANGLE_STRIP);
+      x = -250 + (j * scl);
+      y = -300 + (i * scl);
+      vertex(x, y);
+      vertex(x, y - scl);
+    }
+    endShape(CLOSE);
   }
 }
 
